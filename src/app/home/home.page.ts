@@ -61,7 +61,6 @@ export class HomePage implements OnInit {
 
   async loadMovies(event?: InfiniteScrollCustomEvent) {
     this.error = null;
-
     // Only show loading indicator on initial load
     if (!event) {
       this.isLoading = true;
@@ -72,7 +71,7 @@ export class HomePage implements OnInit {
       .getTopRatedMovies(this.currentPage)
       .subscribe({
         next: (res: ApiResult) => {
-          this.isLoading = true;
+          this.isLoading = false;
           this.movies.push(...res.results);
 
           if (event) {
