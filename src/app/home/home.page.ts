@@ -20,6 +20,7 @@ import { MovieService } from '../services/movie.service';
 import { DatePipe } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { ApiResult } from '../interfaces/interface';
+import { ErrorModel } from '../interfaces/error';
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
@@ -51,7 +52,7 @@ export class HomePage implements OnInit {
   public movies: any[] = [];
   public imageBaseUrl = 'https://image.tmdb.org/t/p';
   public isLoading = true;
-  public error = null;
+  public error: ErrorModel | null = null;
   public dummyArray = new Array(5);
 
   // Load the first page of movies during component initialization
@@ -78,8 +79,10 @@ export class HomePage implements OnInit {
             event.target.disabled = res.total_pages === this.currentPage;
           }
         },
-        error: ((err: any) => {
-          this.error = err.error.status_message;
+        error: ((err: ErrorModel) => {
+          this.isLoading = false;
+          this.error = err;
+         
           return [];
         })
       },
