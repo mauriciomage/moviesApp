@@ -15,11 +15,11 @@ export class MovieService {
 
   constructor(private http: HttpClient) {}
 
-  getTopRatedMovies(page = 1): Observable<any> {
+  getTopRatedMovies(page = 1): Observable<ApiResult> {
     return this.http
-      .get<any>(`${BASE_URL}/movie/popular?page=${page}&api_key=${API_KEY}`)
+      .get<ApiResult>(`${BASE_URL}/movie/popular?page=${page}&api_key=${API_KEY}`)
       .pipe(
-       //  delay(2000) // Simulate slow network
+        delay(2000)
       );
   }
 
