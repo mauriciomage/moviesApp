@@ -6,6 +6,10 @@ export const routes: Routes = [
     loadComponent: () => import('./home/home.page').then((m) => m.HomePage),
   },
   {
+    path: 'login',
+    loadComponent: () => import('./login/login.page').then((m) => m.LoginPage),
+  },
+  {
     path: '',
     redirectTo: 'home-defer',
     pathMatch: 'full',
@@ -19,5 +23,9 @@ export const routes: Routes = [
     path: 'home-defer',
     loadComponent: () =>
       import('./home-defer/home-defer.page').then((m) => m.HomeDeferPage),
+  },
+  {
+    path: 'login',
+    loadComponent: () => import('./login/login.page').then( m => m.LoginPage)
   },
 ];
